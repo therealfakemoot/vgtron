@@ -1,0 +1,2 @@
+# Usage
+Clone this gist. cd into it, and `bash incremental.sh`. That's it. Important to note that in its current iteration it assumes you're running this locally on a web server and that ~/public_html/reports/ exists and is writable.
