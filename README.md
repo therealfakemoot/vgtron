@@ -1,7 +1,7 @@
 # Usage
 1. Clone the repository.
 2. In the repository, the tests/ directory contains the Vegeta targets files. 
-3. If necessary, modify the URL in the target files to point to the test site.
+3. If necessary, modify the URL in the target files to point to the test site. Give the target files descriptive names (example: `static_get.wp_demo_domain`) as these will be used to label the stored report data files (see note below).
 4. When the target files are prepared, simply execute `incremental.sh`. All test cases in the tests/ directory will be executed individually with provided rate, duration, and increment parameters applied. Report data will be stored in appropriately named output files.
 5. At this point, you may refer to the Vegeta [report documentation](https://github.com/tsenart/vegeta#report) for details on generating report data.
 
