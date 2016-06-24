@@ -5,6 +5,7 @@ function incremental_test(rate, duration, test_conf) {
         ./vegeta attack -targets $test_conf -duration $duration -rate $rate -output "$test_conf"."$rate".bin
         ./vegeta report -inputs "$test_conf"."$rate".bin
         #Report output probably shouldn't ASSUME you've got public_html/. Maybe dump the output to ./.reports/ or something? Use your best judgement here.
+        #Also, it'd be nice but not strictly necessary to include a timestamp on reports, so we can rerun tests without blowing away previous recorded data.
         ./vegeta report -inputs "$test_conf"."$rate".bin -reporter plot > ~/public_html/reports/"$test_conf"."$rate".bin
         echo -e "Report generated: '$test_conf'.'$rate'.html"
         #The rate increment 'step' should be configurable as well.
