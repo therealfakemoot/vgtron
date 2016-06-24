@@ -10,8 +10,8 @@ Note: each test case is isolated into its own target file because Vegeta generat
 # Testing Methodology
 The default tests cover the most common types of page access, enumerated below. This should offer coverage for a reasonable majority of use cases and allow greater insight into what sort of requests are cached by Engintron.
 
-1. GET
-2. GET with query parameters
+1. GET, statically cachable page.
+2. GET with query parameters, no database interaction.
 3. POST that triggers database writes.
 4. POST that triggers database read.
 
