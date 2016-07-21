@@ -1,2 +1,2 @@
-POST http://ndumas.com
+POST https://ndumas.com
 @/home/ndumas5/work/engintron-tests/tests/write.json
