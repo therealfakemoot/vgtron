@@ -7,7 +7,7 @@ def post(url, d):
 def write(url, d):
     d['write'] = 'true'
     d['key'] = '1234'
-    d['value'] = '1234'
+    d['value'] = 'sup jadon'
     return requests.post(url, d)
 
 def read(url, d):
@@ -26,4 +26,4 @@ def main(url, test):
         f.write(r.text)
 
 if __name__ == '__main__':
-    main('http://ndumas.com/', 'w')
+    main('http://199.223.114.18:9000', 'w')
