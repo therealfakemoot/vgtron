@@ -1,21 +1,26 @@
 #!/bin/bash
 
-function incremental_test(rate, duration, target_file) {
-    output_dir="$(dirname $target_file)_data"
+function incremental_test() {
+    # Parameters: rate, duration, target_file
+    output_dir="$(dirname $3)_data"
     test_start=$(date +"%Y-%m-%d_%H-%M-%S")
+    rate=$1
+
+    #read -p "Engintron? y/n" engine
+    #TODO: Amend the output filename generation to include whether nginx or apache is handling the test.
+
     #Setting the max rate should be configurable, but I don't want to have too many command line parameters. env var maybe?
     while [ $rate -lt 1000000 ]; do 
         echo -e "REQUEST RATE: $rate per second\n"
-        ./vegeta attack -targets $target_file -duration $duration -rate $rate -output "$output_dir/$test_start"."$rate".bin
+        vegeta attack -targets $3 -duration $2 -rate $rate -output "$output_dir/$test_start"."$rate".bin
         #The rate increment 'step' should be configurable as well.
         let rate=$rate*10
     done
 }
 
 function main() {
+echo
 #find ./tests/ -type f -exec incremental_test($1, $2, {}) \; 
 #This is the gist of what I want. Go over tests one at a time and run through the increments.
 #Also, help output would be nice, but not necessary.
 }
-
-main()
