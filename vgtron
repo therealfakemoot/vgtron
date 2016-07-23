@@ -10,7 +10,7 @@ function incremental_test() {
     #TODO: Amend the output filename generation to include whether nginx or apache is handling the test.
 
     #Setting the max rate should be configurable, but I don't want to have too many command line parameters. env var maybe?
-    while [ $rate -lt 1000000 ]; do 
+    while [ $rate -lt 10000 ]; do 
         echo -e "REQUEST RATE: $rate per second\n"
         vegeta attack -targets $3 -duration $2 -rate $rate -output "$output_dir/$test_start"."$rate".bin
         #The rate increment 'step' should be configurable as well.
