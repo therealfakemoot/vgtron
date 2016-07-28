@@ -18,9 +18,57 @@ incremental_test() {
     done
 }
 
-function main() {
-echo
-#find ./tests/ -type f -exec incremental_test($1, $2, {}) \; 
-#This is the gist of what I want. Go over tests one at a time and run through the increments.
-#Also, help output would be nice, but not necessary.
+help() {
+  cat <<EOF
+Example Invocations:
+
+# Flags
+#All invocations
+-d Duration (in seconds)
+-r Rate (requests per second)
+-s Step (rate increase between tests)
+
+#Dynamic
+-v HTTP verb #Default to GET
+-t target hostname
+
+#Target File
+-f Target File
+
+# The Dynamic and Target File flag groups are mutually exclusive with each other.
+
+# ./vgtron -f all -d 30s -r 10000 -s 50
+
+
+# ./vgtron tests/posts/write 30s 10000 50
+
+EOF
+
 }
+
+case $@ in
+    -h|--help) help;
+
+    -d|--duration)
+        duration="$1"
+        shift 1;
+    -r|--rate)
+        rate="$1"
+        shift 1;
+    -s|--step)
+        step="$1"
+        shift 1;
+    -v|--verb)
+        verb="$1"
+        shift 1;
+    -t|--target)
+        target="$1"
+        shift 1;
+
+    -f|--file)
+        file="$1"
+        shift 1;
+esac
+
+# 
+#find ./tests/ -type f -exec incremental_test($1, $2, {}) \; 
