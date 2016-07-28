@@ -8,7 +8,7 @@ def build_command(args):
 def vegeta(host):
     pass
 
-def main():
+def parse_args():
     parser = argparse.ArgumentParser(description='Vegeta convenience wrapper')
 
     tuning_parser = parser.add_argument_group('Request Tuning', 'These flags are optional and can be provided to change the quantiy/duration of test requests.')
@@ -31,6 +31,9 @@ def main():
     if args.file and args.target:
         raise ValueError('--file and --target are mutually exclusive and cannot be used together.')
 
+def main():
+    pass
 
 if __name__ == '__main__':
-    main()
+    args = parse_args()
+    main(args)
