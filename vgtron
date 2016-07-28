@@ -1,20 +1,20 @@
 #!/bin/bash
 
-function incremental_test() {
-    # Parameters: rate, duration, target_file
-    output_dir="$(dirname $3)_data"
+
+incremental_test() {
+    output_dir="$(dirname $4)_data"
     test_start=$(date +"%Y-%m-%d_%H-%M-%S")
-    rate=$1
 
     #read -p "Engintron? y/n" engine
     #TODO: Amend the output filename generation to include whether nginx or apache is handling the test.
 
     #Setting the max rate should be configurable, but I don't want to have too many command line parameters. env var maybe?
-    while [ $rate -lt 10000 ]; do 
+    while [ $rate -lt $maxrate ]; do 
         echo -e "REQUEST RATE: $rate per second\n"
-        vegeta attack -targets $3 -duration $2 -rate $rate -output "$output_dir/$test_start"."$rate".bin
-        #The rate increment 'step' should be configurable as well.
-        let rate=$rate*10
+        vegeta attack -targets $4 -duration $2 -rate $rate -output "$output_dir/$test_start"."$rate".bin
+        let rate=$rate + $3
+
+    #echo "$request http://$hostname" |./vegeta attack -duration $duration -rate 1
     done
 }
 
