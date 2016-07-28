@@ -10,14 +10,6 @@ def vegeta(host):
 
 def main():
     parser = argparse.ArgumentParser(description='Vegeta convenience wrapper')
-    subparser = parser.add_subparsers()
-
-    target = subparser.add_parser('target')
-    target.add_argument('-f', '--file', dest='file', help='This is a file path to a Vegeta target file', nargs='?', default=None)
-
-    live = subparser.add_parser('live')
-    live.add_argument('-t', '--target', dest='target')
-    live.add_argument('-v', '--verb', dest='verb', default='GET', type=lambda v:v.upper())
 
     tuning_parser = parser.add_argument_group('Request Tuning', 'These flags are optional and can be provided to change the quantiy/duration of test requests.')
 
@@ -25,6 +17,14 @@ def main():
     tuning_parser.add_argument('-r', '--rate', dest='rate', default=1000)
     tuning_parser.add_argument('-s', '--step', dest='step', default=10)
     tuning_parser.add_argument('-m', '--max', dest='max', default=10000)
+
+    target_parser = parser.add_argument_group('Target Files', 'This flag is used to specify a target file for your attack. Exclusive with Manual Target.')
+    target_parser.add_argument('-f', '--file', dest='file', nargs='?', default=None)
+
+    manual_parser = parser.add_argument_group('Manual Target', 'This flag allows you manually specify the target hostname and HTTP Verb. Exclusive with Target Files.')
+    manual_parser.add_argument('-t', '--target', dest='target')
+    manual_parser.add_argument('-v', '--verb', dest='verb', default='GET', type=lambda v:v.upper())
+
 
     args = parser.parse_args()
 
