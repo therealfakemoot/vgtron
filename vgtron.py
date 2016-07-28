@@ -28,5 +28,9 @@ def main():
 
     args = parser.parse_args()
 
+    if args.file and args.target:
+        raise ValueError('--file and --target are mutually exclusive and cannot be used together.')
+
+
 if __name__ == '__main__':
     main()
