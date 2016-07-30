@@ -31,7 +31,7 @@ def parse_args():
     if args.file and args.target:
         raise ValueError('--file and --target are mutually exclusive and cannot be used together.')
 
-def main():
+def main(args):
     pass
 
 if __name__ == '__main__':
