@@ -33,3 +33,8 @@ def main(args):
 if __name__ == '__main__':
     args = parse_args()
     main(args)
+
+    if args.file:
+        file_attack(args.file, args.duration, args.rate, args.step, args.max)
+    elif args.target:
+        target_attack(args.target, args.duration, args.rate, args.step, args.max)
