@@ -2,9 +2,6 @@
 import argparse
 from subprocess import Popen
 
-def build_command(args):
-    pass
-
 def vegeta(host):
     pass
 
@@ -24,7 +21,6 @@ def parse_args():
     manual_parser = parser.add_argument_group('Manual Target', 'This flag allows you manually specify the target hostname and HTTP Verb. Exclusive with Target Files.')
     manual_parser.add_argument('-t', '--target', dest='target')
     manual_parser.add_argument('-v', '--verb', dest='verb', default='GET', type=lambda v:v.upper())
-
 
     args = parser.parse_args()
 
