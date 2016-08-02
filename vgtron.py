@@ -1,9 +1,24 @@
 #!/opt/imh-python/bin/python
 import argparse
+import uuid
 from subprocess import Popen
+import arrow
 
-def vegeta(host):
-    pass
+def build_output_filename(prefix=''):
+    now = arrow.now().format('YYYY-MM-DD_HH:mm:ss')
+    identifier = uuid.uuid1()
+
+    return '{prefix}_{timestamp}-{uuid}.bin'.format(prefix=prefix, timestamp=now, uuid=identifier)
+
+def file_attack(target_file, duration, rate, step, max):
+    for r in range(rate, max, step):
+        cmd = 'vegeta attack -targets {} -duration {} -rate {} -output {output}'.format(target_file, duration, r, output=build_output_filename())
+        Popen(cmd, shell=True)
+
+def target_attack(target_host, verb, duration, rate, step, max):
+    for r in range(rate, max, step):
+        cmd = 'echo "{} {}" | vegeta attack -duration {} -rate {} -output {output}'.format(verb, target_host, duration, r, output=build_output_file())
+        Popen(cmd, shell=True)
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Vegeta convenience wrapper')
@@ -37,4 +52,4 @@ if __name__ == '__main__':
     if args.file:
         file_attack(args.file, args.duration, args.rate, args.step, args.max)
     elif args.target:
-        target_attack(args.target, args.duration, args.rate, args.step, args.max)
+        target_attack(args.target, args.verb, args.duration, args.rate, args.step, args.max)
