@@ -32,7 +32,7 @@ def parse_args():
     tuning_parser.add_argument('-p', '--prefix', dest='prefix', default='')
 
     target_parser = parser.add_argument_group('Target Files', 'This flag is used to specify a target file for your attack. Exclusive with Manual Target.')
-    target_parser.add_argument('-f', '--file', dest='file', nargs='?', default=None)
+    target_parser.add_argument('-f', '--file', dest='file', default=None)
 
     manual_parser = parser.add_argument_group('Manual Target', 'This flag allows you manually specify the target hostname and HTTP Verb. Exclusive with Target Files.')
     manual_parser.add_argument('-t', '--target', dest='target')
