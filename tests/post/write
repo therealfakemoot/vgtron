@@ -1,3 +1,0 @@
-POST https://ndumas.com
-Content-Type: application/x-www-form-urlencoded
-@/home/ndumas5/work/engintron-tests/tests/write.payload
