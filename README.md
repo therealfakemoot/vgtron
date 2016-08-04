@@ -1,14 +1,21 @@
-# Usage
-1. Clone the repository.
-2. In the repository, the tests/ directory contains the Vegeta targets files. 
-3. If necessary, modify the URL in the target files to point to the test site. Give the target files descriptive names (example: `static_get.wp_demo_domain`) as these will be used to label the stored report data files (see note below).
-4. When the target files are prepared, simply execute `incremental.sh`. All test cases in the tests/ directory will be executed individually with provided rate, duration, and increment parameters applied. Report data will be stored in appropriately named output files.
-5. At this point, you may refer to the Vegeta [report documentation](https://github.com/tsenart/vegeta#report) for details on generating report data.
+# Using `vegeta`
 
-Note: each test case is isolated into its own target file because Vegeta generates report data per target file. If all test cases were consolidated into a single target file, test data would become clouded. Vegeta's reporting facilities allow collation of arbitrary amounts of report data, so running all test cases individually allows for finer grained reporting.
+## Target Files
+A target file contains, more or less, one or more raw HTTP requests. An example:
+```
+GET http://google.com
+Content-type: application/json
+Extra-Header: stuff_and_things
+@/path/to/body_contents
+```
+
+`body_contents` is sent verbatim, meaning that if the endpoint these reuqests are being sent to requires a form-encoded payload, body_contents must literally be a form-encoded string. You can include JSON or raw binary data. It's important to note that you must handle your own Content-type header if the endpoint requires it.
+
+## Invoking vgtron
+For help using vgtron, please see the help output: `vgtron --help`.
 
 # Testing Methodology
-The default tests cover the most common types of page access, enumerated below. This should offer coverage for a reasonable majority of use cases and allow greater insight into what sort of requests are cached by Engintron.
+The example tests cover the most common types of page access, enumerated below. This should offer coverage for a reasonable majority of use cases.
 
 1. GET, statically cachable page.
 2. GET with query parameters, no database interaction.
