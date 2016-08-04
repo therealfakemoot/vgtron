@@ -9,7 +9,7 @@ Extra-Header: stuff_and_things
 @/path/to/body_contents
 ```
 
-`body_contents` is sent verbatim, meaning that if the endpoint these reuqests are being sent to requires a form-encoded payload, body_contents must literally be a form-encoded string. You can include JSON or raw binary data. It's important to note that you must handle your own Content-type header if the endpoint requires it.
+`body_contents` is sent verbatim, meaning that if the endpoint these reuqests are being sent to requires a form-encoded payload, `body_contents` must literally be a form-encoded string. You can include JSON or raw binary data. It's important to note that you must handle your own Content-type header if the endpoint requires it.
 
 ## Invoking vgtron
 For help using vgtron, please see the help output: `vgtron --help`.
