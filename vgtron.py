@@ -29,6 +29,7 @@ def parse_args():
     tuning_parser.add_argument('-r', '--rate', dest='rate', default=1000)
     tuning_parser.add_argument('-s', '--step', dest='step', default=10)
     tuning_parser.add_argument('-m', '--max', dest='max', default=10000)
+    tuning_parser.add_argument('-p', '--prefix', dest='prefix', default='')
 
     target_parser = parser.add_argument_group('Target Files', 'This flag is used to specify a target file for your attack. Exclusive with Manual Target.')
     target_parser.add_argument('-f', '--file', dest='file', nargs='?', default=None)
