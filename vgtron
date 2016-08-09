@@ -14,12 +14,12 @@ def build_output_filename(rate, prefix=''):
 def file_attack(target_file, duration, rate, step, max, prefix):
     for r in range(rate, max+step, step):
         cmd = 'vegeta attack -targets {} -duration {} -rate {} -output {output}'.format(target_file, duration, r, output=build_output_filename(r, prefix))
-        Popen(cmd, shell=True)
+        Popen(cmd, shell=True).wait()
 
 def target_attack(target_host, verb, duration, rate, step, max, prefix):
     for r in range(rate, max, step):
         cmd = 'echo "{} {}" | vegeta attack -duration {} -rate {} -output {output}'.format(verb, target_host, duration, r, output=build_output_filename(r, prefix))
-        Popen(cmd, shell=True)
+        Popen(cmd, shell=True).wait()
 
 def build_parser():
     parser = argparse.ArgumentParser(description='Vegeta convenience wrapper')
