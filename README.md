@@ -14,6 +14,14 @@ Extra-Header: stuff_and_things
 ## Invoking vgtron
 For help using vgtron, please see the help output: `vgtron --help`.
 
+Example invocations:
+
+### Target File
+`./vgtron --file example/get/static --duration 5s --rate 10 --max 100 --step 10 --prefix demo`
+
+### 'Raw' invocation
+`./vgtron --target http://google.com --verb GET --duration 5s --rate 10 --max 100 --step 10 --prefix demo`
+
 # Testing Methodology
 The example tests cover the most common types of page access, enumerated below. This should offer coverage for a reasonable majority of use cases.
 
