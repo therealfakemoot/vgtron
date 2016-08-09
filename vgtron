@@ -40,9 +40,11 @@ def build_parser():
 
     return parser
 
-
 def main(args):
-    pass
+    if args.file:
+        file_attack(args.file, args.duration, args.rate, args.step, args.max, args.prefix)
+    elif args.target:
+        target_attack(args.target, args.verb, args.duration, args.rate, args.step, args.max, args.prefix)
 
 if __name__ == '__main__':
     parser = build_parser()
@@ -53,8 +55,3 @@ if __name__ == '__main__':
         raise ValueError('--file and --target are mutually exclusive and cannot be used together.')
 
     main(args)
-
-    if args.file:
-        file_attack(args.file, args.duration, args.rate, args.step, args.max, args.prefix)
-    elif args.target:
-        target_attack(args.target, args.verb, args.duration, args.rate, args.step, args.max, args.prefix)
