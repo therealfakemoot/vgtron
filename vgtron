@@ -17,7 +17,7 @@ def file_attack(target_file, duration, rate, step, max, prefix):
 
 def target_attack(target_host, verb, duration, rate, step, max, prefix):
     for r in range(rate, max, step):
-        cmd = 'echo "{} {}" | vegeta attack -duration {} -rate {} -output {output}'.format(verb, target_host, duration, r, output=build_output_file(r, prefix))
+        cmd = 'echo "{} {}" | vegeta attack -duration {} -rate {} -output {output}'.format(verb, target_host, duration, r, output=build_output_filename(r, prefix))
         Popen(cmd, shell=True)
 
 def build_parser():
